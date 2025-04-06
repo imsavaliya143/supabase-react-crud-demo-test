@@ -80,17 +80,18 @@ function App() {
         <button onClick={addTodo}> Add Todo Item</button>
       </div>
       <ul>
-        {todoList.map((todo) => (
-          <li>
-            <p> {todo.name}</p>
-            <button onClick={() => completeTask(todo.id, todo.isCompleted)}>
-              {" "}
-              {todo.isCompleted ? "Undo" : "Complete Task"}
-            </button>
-            <button onClick={() => deleteTask(todo.id)}> Delete Task</button>
-          </li>
-        ))}
-      </ul>
+  {todoList
+    .filter((todo) => todo !== null && todo !== undefined)
+    .map((todo) => (
+      <li key={todo.id}>
+        <p>{todo.name}</p>
+        <button onClick={() => completeTask(todo.id, todo.isCompleted)}>
+          {todo.isCompleted ? "Undo" : "Complete Task"}
+        </button>
+        <button onClick={() => deleteTask(todo.id)}>Delete Task</button>
+      </li>
+    ))}
+</ul>
     </div>
   );
 }
